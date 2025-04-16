@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artistas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->string('nacionalidad');
-            $table->text('biografia');
+        Schema::create('tb_artistas', function (Blueprint $table) {
+            $table->id('art_id');
+            $table->string('art_nombre');
+            $table->string('art_apellido');
+            $table->string('art_nacionalidad');
+            $table->text('art_biografia');
             $table->timestamps();
         });
     }

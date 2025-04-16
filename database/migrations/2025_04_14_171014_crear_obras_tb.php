@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('obras', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('artista_id')->constrained('artistas')->onDelete('cascade');
-            $table->string('titulo');
-            $table->year('año');
-            $table->string('tecnica');
-            $table->string('dimensiones');
-            $table->text('descripcion');
+        Schema::create('tb_obras', function (Blueprint $table) {
+            $table->id('obra_id');
+            $table->foreignId('art_id')->constrained('tb_artistas')->onDelete('cascade');
+            $table->string('obra_titulo');
+            $table->year('obra_año');
+            $table->string('obra_tecnica');
+            $table->string('obra_dimensiones');
+            $table->text('obra_descripcion');
             $table->timestamps();
         });
     }

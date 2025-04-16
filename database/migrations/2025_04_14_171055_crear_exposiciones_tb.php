@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exposiciones', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('obra_id')->constrained('obras')->onDelete('cascade');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
-            $table->string('ubicacion');
-            $table->string('nombre_evento');
+        Schema::create('tb_exposiciones', function (Blueprint $table) {
+            $table->id('expo_id');
+            $table->foreignId('obra_id')->constrained('tb_obras')->onDelete('cascade');
+            $table->date('expo_fecha_inicio');
+            $table->date('expo_fecha_fin');
+            $table->string('expo_ubicacion');
+            $table->string('expo_nombre_evento');
             $table->timestamps();
         });
     }
