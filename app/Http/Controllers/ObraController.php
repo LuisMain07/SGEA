@@ -56,7 +56,7 @@ class ObraController extends Controller
     public function edit($id)
     {
         $obra = Obra::find($id);
-        return view('Obras.edit', ['obra' => $obra]);
+        return view('obras.edit', ['obra' => $obra]);
     }
 
     /**

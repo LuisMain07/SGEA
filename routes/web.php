@@ -8,6 +8,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/obras', [ObraController::class, 'index'])->name('obras.index');
+Route::post('/obras', [ObraController::class, 'store'])->name('obras.store');
+Route::get('/obras/create', [ObraController::class, 'create'])->name('obras.create');
+Route::delete('/obras/{obra}', [ObraController::class, 'destroy'])->name('obras.destroy');
+Route::put('/obras/{obra}', [ObraController::class, 'update'])->name('obras.update');
+Route::get('/obras/{obra}/edit', [ObraController::class, 'edit'])->name('obras.edit');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -20,9 +27,4 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/obras', [ObraController::class, 'index'])->name('obras.index');
-Route::post('/obras', [ObraController::class, 'store'])->name('obras.store');
-Route::get('/obras/create', [ObraController::class, 'create'])->name('obras.create');
-Route::delete('/obras/{obra}', [ObraController::class, 'destroy'])->name('obras.destroy');
-Route::put('/obras/{obra}', [ObraController::class, 'update'])->name('obras.update');
-Route::get('/obras/{obra}/edit', [ObraController::class, 'edit'])->name('obras.edit');
+
