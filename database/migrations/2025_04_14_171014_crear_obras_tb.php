@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tb_obras', function (Blueprint $table) {
-            $table->id('obra_id');
-            $table->foreignId('art_id')->constrained('tb_artistas')->onDelete('cascade');
+            $table->id();
+            $table->foreignId('artista_id')->constrained('tb_artistas')->onDelete('cascade');
             $table->string('obra_titulo');
             $table->year('obra_año');
             $table->string('obra_tecnica');

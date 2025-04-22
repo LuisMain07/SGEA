@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tb_artistas', function (Blueprint $table) {
-            $table->id('art_id');
+            $table->id();
             $table->string('art_nombre');
             $table->string('art_apellido');
             $table->string('art_nacionalidad');
