@@ -13,35 +13,35 @@
   <body>
     <div class="container">
         <h1>Editar columna</h1>    
-        <form method="POST" action="{{ route('obras.update',['obra' => $obra->id]) }}">
+        <form method="POST" action="{{ route('exposiciones.update',['obra' => $exposicion->id]) }}">
             @method('put')
             @csrf
             <div class="mb-3">
                 <label for="codigo" class="form-label">Id</label>
                 <input type="text" class="form-control" id="id" aria-describedby="codigoHelp" name="id"
-                    disabled="disabled" value="{{ $obra->id }}">
-                <div id="codigoHelp" class="form-text">Obra Id.</div>
+                    disabled="disabled" value="{{ $exposicion->id }}">
+                <div id="codigoHelp" class="form-text">exposicion Id.</div>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Obra</label>
-                <input type="text" required class="form-control" id="name" placeholder="Obra name."
-                    name="name" value="{{ $obra->obra_titulo }}">
+                <label for="name" class="form-label">Exposicion</label>
+                <input type="text" required class="form-control" id="name" placeholder="Exposicion name."
+                    name="name" value="{{ $exposicion->expo_nombre_evento }}">
             </div>
 
-            <label for="artista">Artista:</label>
-            <select class="form-select" id="artista" name="code" required>
+            <label for="obra">Obra:</label>
+            <select class="form-select" id="obra" name="code" required>
                 <option selected disabled value="">Choose one...</option>
-                @foreach ($artista as $artista)
-                    @if ($artista->artista_id == $artista->id)
-                        <option selected value="{{ $artista->id }}">{{ $artista->art_nombre }}</option>
+                @foreach ($obra as $obra)
+                    @if ($obra->id == $obra->id)
+                        <option selected value="{{ $obra->id }}">{{ $obra->obra_titulo }}</option>
                     @else
-                        <option value="{{ $artista->id }}">{{ $artista->art_nombre }}</option>
+                        <option value="{{ $obra->id }}">{{ $obra->obra_titulo }}</option>
                     @endif
                 @endforeach
             </select>
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Actualizar</button>
-                <a href="{{ route('obras.index') }}" class="btn btn-warning">Cancelar</a>
+                <a href="{{ route('exposiciones.index') }}" class="btn btn-warning">Cancelar</a>
             </div>
         </form>
     </div>
