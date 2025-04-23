@@ -32,6 +32,7 @@ class ObraController extends Controller
     {
         $obra = new Obra();
         $obra->id = $request->id;
+        $obra->artista_id = $request->artista_id;
         $obra->obra_titulo = $request->titulo;
         $obra->obra_año = $request->año;
         $obra->obra_tecnica = $request->tecnica;
@@ -72,7 +73,7 @@ class ObraController extends Controller
         $obra->obra_descripcion = $request->descripcion;
         $obra->save();
 
-        return redirect()->route('Obras.index');
+        return redirect()->route('obras.index');
     }
 
     /**
