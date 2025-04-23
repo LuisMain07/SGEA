@@ -31,7 +31,7 @@
             <label for="artista">Artista:</label>
             <select class="form-select" id="artista" name="code" required>
                 <option selected disabled value="">Choose one...</option>
-                @foreach ($artista as $artista)
+                @foreach ($artistas as $artista)
                     @if ($artista->artista_id == $artista->id)
                         <option selected value="{{ $artista->id }}">{{ $artista->art_nombre }}</option>
                     @else

@@ -13,8 +13,13 @@ class ObraController extends Controller
      */
     public function index()
     {
-        $obras = DB::table('tb_obras')->orderBy('obra_titulo')->get();
-        return view('obras.index', ['obras' => $obras]);
+        $obras = DB::table('tb_obras')
+              ->join('tb_artistas', 'tb_obras.artista_id', '=', 'tb_artistas.id')
+              ->select('tb_obras.*', 'tb_artistas.art_nombre')
+              ->orderBy('obra_titulo')
+              ->get();
+              
+    return view('obras.index', ['obras' => $obras]);
     }
 
     /**
@@ -22,7 +27,8 @@ class ObraController extends Controller
      */
     public function create()
     {
-        return view('obras.new');
+        $artistas = DB::table('tb_artistas')->orderBy('art_nombre')->get();
+        return view('obras.new', compact('artistas'));
     }
 
     /**
@@ -30,17 +36,25 @@ class ObraController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'artista_id' => 'required|integer',
+            'titulo' => 'required|string|max:255',
+            'año' => 'required|integer',
+            'tecnica' => 'required|string',
+            'dimensiones' => 'required|string',
+            'descripcion' => 'nullable|string'
+        ]);
+    
         $obra = new Obra();
-        $obra->id = $request->id;
-        $obra->artista_id = $request->artista_id;
-        $obra->obra_titulo = $request->titulo;
-        $obra->obra_año = $request->año;
-        $obra->obra_tecnica = $request->tecnica;
-        $obra->obra_dimensiones = $request->dimensiones;
-        $obra->obra_descripcion = $request->descripcion;
+        $obra->artista_id = $validatedData['artista_id'];
+        $obra->obra_titulo = $validatedData['titulo'];
+        $obra->obra_año = $validatedData['año'];
+        $obra->obra_tecnica = $validatedData['tecnica'];
+        $obra->obra_dimensiones = $validatedData['dimensiones'];
+        $obra->obra_descripcion = $validatedData['descripcion'] ?? null;
         $obra->save();
-
-        return redirect()->route('obras.index');
+    
+        return redirect()->route('obras.index')->with('success', 'Obra creada exitosamente');
     }
 
     /**
@@ -56,7 +70,7 @@ class ObraController extends Controller
      */
     public function edit($id)
     {
-        $obra = Obra::find($id);
+        $obra = Obras::find($id);
         return view('obras.edit', ['obra' => $obra]);
     }
 
@@ -65,12 +79,12 @@ class ObraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $obra = Obra::find($id);
-        $obra->obra_titulo = $request->titulo;
-        $obra->obra_año = $request->año;
-        $obra->obra_tecnica = $request->tecnica;
-        $obra->obra_dimensiones = $request->dimensiones;
-        $obra->obra_descripcion = $request->descripcion;
+        $obra = Obras::find($id);
+        $obra->obra_titulo = $request->obra_titulo;
+        $obra->obra_año = $request->obra_año;
+        $obra->obra_tecnica = $request->obra_tecnica;
+        $obra->obra_dimensiones = $request->obra_dimensiones;
+        $obra->obra_descripcion = $request->obra_descripcion;
         $obra->save();
 
         return redirect()->route('obras.index');
@@ -81,7 +95,7 @@ class ObraController extends Controller
      */
     public function destroy($id)
     {
-        $obra = Obra::find($id);
+        $obra = Obras::find($id);
         $obra->delete();
 
         return redirect()->route('obras.index');

@@ -22,10 +22,10 @@
                 <div id="idHelp" class="form-text">Obra id</div>
             </div>
             <label for="artista">Artista:</label>
-            <select>
-                <option selected disabled value="">Choose one...</option>
-                @foreach ($obras as $obra)
-                    <option value="{{ $obra->id }}">{{ $obra->obra_titulo }}</option>
+            <select name="artista_id" class="form-select mb-3">
+                <option selected disabled value="">Seleccione un artista...</option>
+                @foreach ($artistas as $artista)
+                    <option value="{{ $artista->id }}">{{ $artista->art_nombre }}</option>
                 @endforeach
             </select>
             <div class="mb-3">
