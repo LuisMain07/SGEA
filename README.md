@@ -1,3 +1,47 @@
+# Examen Consolidado 2 - Sistema de Gestión de Exposiciones de Arte (SGEA)
+
+Este proyecto es parte del Examen Consolidado 2 y consiste en el desarrollo de una aplicación en Laravel 11 para gestionar la información de artistas, obras de arte y exposiciones.
+
+La aplicación implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para cada entidad y cuenta con autenticación utilizando Laravel Breeze para proteger el acceso al sistema.
+
+## Tecnologías utilizadas
+
+- Laravel 11  
+- Laravel Breeze (para autenticación)
+
+## Instalación
+
+Clona el repositorio:
+
+```bash
+git clone https://github.com/LuisMain07/SGEA.git
+cd SGEA
+```
+
+Instalar las dependencias con Composer:
+
+```bash
+composer install
+```
+
+Configurar la base de datos y luego ejecutar las migraciones:
+
+```bash
+php artisan migrate
+```
+
+Instalar las dependencias de Node.js:
+
+```bash
+npm install
+```
+
+Iniciar el servidor:
+
+```bash
+php artisan serve
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
